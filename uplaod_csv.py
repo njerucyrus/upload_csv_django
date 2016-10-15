@@ -1,6 +1,7 @@
 import json
 import csv
 from django.shortcuts import render, HttpResponse
+from myapp.forms import UploadCSVForm
 def upload_csv(request):
 	if request.method == 'POST':
 		form = UploadCSVForm(request.POST, request.FILES)
@@ -12,12 +13,12 @@ def upload_csv(request):
             data = [row for row in csv.reader(file.read().splitlines())]
 
 
-            # do anythoing with the data 
+            # do anything with the data 
             response_data = {}
             for value in data:
             	
-            	response_data['value1'] = [1]
-            	response_data['value2'] = [2]
+            	response_data['value1'] = value[1]
+            	response_data['value2'] = value[2]
 
              
             return HttpResponse(
