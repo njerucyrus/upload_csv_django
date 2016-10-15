@@ -9,7 +9,8 @@ def upload_csv(request):
 			# get the posted file
 			csv_file = request.FILES['CSV_FILE']
 
-            data = [row for row in csv.reader(csv_file)]
+            data = [row for row in csv.reader(file.read().splitlines())]
+
 
             # do anythoing with the data 
             response_data = {}
